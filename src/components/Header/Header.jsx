@@ -2,18 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import s from './Header.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { useAppContext } from '../../context';
 
 const Header = () => {
+
+  const {isCard1, isCard2, toggleOpen1,toggleOpen2} = useAppContext()
+
+
+
   const [isActive, setIsActive] = useState(false);
-  const [prevSlideImage, setPrevSlideImage] = useState('/moto2.png'); // Начальное изображение
+  const [prevSlideImage, setPrevSlideImage] = useState('/moto-2.png'); // Начальное изображение
 
   const swiperRef = useRef(null);
 
   const slides = [
-    { id: 1, title: 'DUCATI', img: '/moto-1.png', details: '215 CV, 300 km/h, NPX 25/30' },
-    { id: 2, title: 'DUCATI', img: '/moto2.png', details: '168 CV, 274 km/h, Twin Pulse' },
+    { id: 1, title: 'DUГATI', img: '/moto-1.png', details: '215 CV, 300 km/h, NPX 25/30' },
+    { id: 2, title: 'DUГATI', img: '/moto-2.png', details: '168 CV, 274 km/h, Twin Pulse' },
   ];
-
 
   const toggleSearch = () => {
     setIsActive(!isActive);
@@ -36,6 +41,7 @@ const Header = () => {
     }
   };
 
+
   const updatePrevSlideImage = () => {
     if (swiperRef.current) {
       const swiper = swiperRef.current;
@@ -52,7 +58,6 @@ const Header = () => {
       updatePrevSlideImage(); // Обновить изображение при первом рендере
     }
   }, []);
-
 
   return (
     <>
@@ -82,15 +87,15 @@ const Header = () => {
             <SwiperSlide>
               <div className={s.card}>
                 <button className={s.next} onClick={handleNext}>
-                  <img src="/next.svg" alt="" />
+                  <img src="/arrow.svg" alt="" />
                 </button>
 
                 <div className={s.box}>
                   <h1 className={s.title}>
-                    DUCATI
+                    DUГATI
                     <img src="/moto-1.png" alt="moto" />
                   </h1>
-                  <button>Read more</button>
+                  <button onClick={toggleOpen1}>Read more</button>
                 </div>
 
                 <div className={s.inner}>
@@ -110,15 +115,15 @@ const Header = () => {
             <SwiperSlide>
               <div className={s.card}>
                 <button className={s.next} onClick={handleNext}>
-                  <img src="/next.svg" alt="" />
+                  <img src="/arrow.svg" alt="" />
                 </button>
 
                 <div className={s.box}>
                   <h1 className={s.title}>
-                    DUCATI
-                    <img src="/moto2.png" alt="moto" />
+                    DUГATI
+                    <img src="/moto-2.png" alt="moto" />
                   </h1>
-                  <button>Read more</button>
+                  <button onClick={toggleOpen2}>Read more</button>
                 </div>
 
                 <div className={s.inner}>
